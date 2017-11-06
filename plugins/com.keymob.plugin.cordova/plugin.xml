@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        id="com.keymob.plugin.cordova"
+        version="1.0.2">
+    <name>KeymobPlugin</name>
+    <keywords>Keymob,ad,admob,google,google-play-service,iad,flurry,device,adwhirl,xdk,jquery,intel
+        appframework,jqmob,cordova,phonegap,ads,html5,js,adcolony,amazon
+    </keywords>
+    <description>
+        Keymob plugin for Cordova, Phonegap and Intel XDK ,support ios and android,support
+        admob,iad,baidu,inmobi,mmedia,amazon ,gdt,adclony and so on ,Monetize your app with one javascript line.simple and easy to
+        use api.
+        project home:https://github.com/keymobdev/cordova-ad-plugin
+        <br/>
+    </description>
+    <license>Apache 2.0 License</license>
+    <repo>https://github.com/keymobdev/cordova-ad-plugin</repo>
+    <issue>https://github.com/keymobdev/cordova-ad-plugin/issues</issue>
+    <js-module src="www/KeymobPlugin.js" name="KeymobPlugin">
+        <clobbers target="window.keymob"/>
+    </js-module>
+    <platform name="android">
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="KeymobPlugin">
+                <param name="android-package" value="com.keymob.plugin.cordova.KeymobPlugin"/>
+            </feature>
+        </config-file>
+        <config-file target="AndroidManifest.xml" parent="/manifest/application">
+
+            <!-- Admob -->
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="8115000" />
+
+        <activity
+            android:name="com.google.android.gms.ads.AdActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
+            android:theme="@android:style/Theme.Translucent" />
+
+        <!-- Amazon Mobile Ads -->
+        <activity
+            android:name="com.amazon.device.ads.AdActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize" />
+
+        <!-- InMobi -->
+        <activity
+            android:name="com.inmobi.rendering.InMobiAdActivity"
+            android:configChanges="keyboardHidden|orientation|keyboard|smallestScreenSize|screenSize"
+            android:hardwareAccelerated="true"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            />
+
+        <!-- Millennial Media -->
+        <activity
+            android:name="com.millennialmedia.internal.MMActivity"
+            
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <activity
+            android:name="com.millennialmedia.internal.MMIntentWrapperActivity"
+            android:label="sdk" />
+        
+
+        <!-- Keymob -->
+        <activity
+            android:name="com.keymob.sdk.core.KeymobActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
+            android:theme="@android:style/Theme.Dialog" />
+        <!-- baidu -->
+        <activity
+            android:name="com.baidu.mobads.AppActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation" />
+
+        <!-- adcolony -->
+        <activity
+            android:name="com.jirbo.adcolony.AdColonyOverlay"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" />
+        <activity
+            android:name="com.jirbo.adcolony.AdColonyFullscreen"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" />
+        <activity
+            android:name="com.jirbo.adcolony.AdColonyBrowser"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" />
+
+        <!-- guang dian tong -->
+        <service
+            android:name="com.qq.e.comm.DownloadService"
+            android:exported="false" />
+            <activity
+            android:name="com.qq.e.ads.ADActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize" />
+
+        <!-- chartboost -->
+        	<activity android:name="com.chartboost.sdk.CBImpressionActivity"
+            	   android:excludeFromRecents="true"
+                   android:hardwareAccelerated="true"
+            	   android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"
+                   android:configChanges="keyboardHidden|orientation|screenSize"/>
+        
+        
+   
+        </config-file>
+        <config-file target="AndroidManifest.xml" parent="/*">
+            <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+            <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+            <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+            <uses-permission android:name="android.permission.INTERNET"/>
+            <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+            <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+            <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+        </config-file>
+
+        <source-file src="src/android/libs/keymobplugin.jar" target-dir="libs/"/>
+        <source-file src="src/android/libs/keymobad.jar" target-dir="libs/"/>
+         <source-file src="src/android/assets/com_keymob_sdks" target-dir="assets/"/>
+         <source-file src="src/android/assets/biduad_plugin" target-dir="assets/"/>
+         <source-file src="src/android/assets/gdt_plugin" target-dir="assets/"/>
+         <source-file src="src/android/assets/mmadsdk" target-dir="assets/"/>
+    </platform>
+    <platform name="ios">
+        <config-file target="config.xml" parent="/*">
+            <feature name="KeymobPlugin">
+                <param name="ios-package" value="KeymobPlugin"/>
+            </feature>
+        </config-file>
+
+        <source-file src="src/ios/KeymobPlugin.m"/>
+        <header-file src="src/ios/KeymobPlugin.h"/>
+        <framework src="src/ios/KeymobAd.framework" custom="true"/>
+
+        <framework src="EventKit.framework"/>
+        <framework src="EventKitUI.framework"/>
+        <framework src="StoreKit.framework"/>
+        <framework src="AdSupport.framework"/>
+        <framework src="MessageUI.framework"/>
+        <framework src="AVFoundation.framework"/>
+        <framework src="Foundation.framework"/>
+        <framework src="UIKit.framework"/>
+        <framework src="CoreGraphics.framework"/>
+        <framework src="SystemConfiguration.framework"/>
+        <framework src="AudioToolbox.framework"/>
+        
+         <framework src="CoreLocation.framework"/>
+        <framework src="CoreMotion.framework"/>
+        <framework src="Social.framework"/>
+        <framework src="WebKit.framework"/>
+         <framework src="libz.tbd"/>
+         <framework src="libsqlite3.tbd"/>
+         <framework src="libxml2.2.tbd"/>
+         <!-- add other linker flag   -lstdc++ -->
+    </platform>
+</plugin>

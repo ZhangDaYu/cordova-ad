@@ -22,5 +22,13 @@
     },
     "is_top_level": false,
     "variables": {}
+  },
+  "com.keymob.plugin.cordova": {
+    "source": {
+      "type": "local",
+      "path": "D:\\hello\\node_modules\\com.keymob.plugin.cordova"
+    },
+    "is_top_level": true,
+    "variables": {}
   }
 }

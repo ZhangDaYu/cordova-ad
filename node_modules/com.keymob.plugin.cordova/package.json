@@ -1,0 +1,58 @@
+{
+  "author": {
+    "name": "Apache Software Foundation"
+  },
+  "bugs": {
+    "url": "https://github.com/apache/cordova-plugin-compat/issues"
+  },
+  "bundleDependencies": false,
+  "cordova": {
+    "id": "com.keymob.plugin.cordova",
+    "platforms": [
+      "android"
+    ]
+  },
+  "deprecated": false,
+  "description":"Keymob plugin for Cordova, Phonegap and Intel XDK ,support ios and android,support admob,iad,baidu,inmobi,mmedia,amazon ,gdt,adclony and so on ,Monetize your app with one javascript line.simple and easy to use api.",
+  "engines": {
+    "cordovaDependencies": {
+      "<1.2.0": {
+        "cordova": ">=5.0.0"
+      },
+      ">=1.2.0": {
+        "cordova": ">=5.0.0",
+        "cordova-android": "<6.3.0"
+      }
+    }
+  },
+  "homepage": "https://github.com/keymobdev/cordova-ad-plugin",
+  "keywords": [
+    "Keymob",
+    "ad",
+    "admob",
+	"google",
+	"google-play-service",
+	"iad",
+	"flurry",
+	"device",
+	"adwhirl",
+	"xdk",
+	"jquery",
+	"intel appframework",
+	"jqmob",
+	"cordova",
+	"phonegap",
+	"ads",
+	"html5",
+	"js",
+	"adcolony",
+	"amazon"
+  ],
+  "license": "Apache-2.0",
+  "name": "com.keymob.plugin.cordova",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/keymobdev/cordova-ad-plugin.git"
+  },
+  "version": "1.0.2"
+}

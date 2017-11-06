@@ -31,13 +31,22 @@ module.exports = [
     "clobbers": [
       "CameraPopoverHandle"
     ]
+  },
+  {
+    "id": "com.keymob.plugin.cordova.KeymobPlugin",
+    "file": "plugins/com.keymob.plugin.cordova/www/KeymobPlugin.js",
+    "pluginId": "com.keymob.plugin.cordova",
+    "clobbers": [
+      "window.keymob"
+    ]
   }
 ];
 module.exports.metadata = 
 // TOP OF METADATA
 {
   "cordova-plugin-whitelist": "1.3.2",
-  "cordova-plugin-camera": "2.4.1"
+  "cordova-plugin-camera": "2.4.1",
+  "com.keymob.plugin.cordova": "1.0.2"
 };
 // BOTTOM OF METADATA
 });

@@ -12,6 +12,9 @@
     },
     "cordova-plugin-camera": {
       "PACKAGE_NAME": "com.example.hello"
+    },
+    "com.keymob.plugin.cordova": {
+      "PACKAGE_NAME": "com.example.hello"
     }
   },
   "dependent_plugins": {

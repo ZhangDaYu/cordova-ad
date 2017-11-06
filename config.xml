@@ -26,4 +26,5 @@
     <engine name="browser" spec="5.0.1" />
     <plugin name="cordova-plugin-whitelist" spec="^1.3.2" />
     <plugin name="cordova-plugin-camera" spec="^2.4.1" />
+    <plugin name="com.keymob.plugin.cordova" spec="file:e:/phonegap-plugins-master" />
 </widget>

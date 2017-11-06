@@ -29,6 +29,14 @@ module.exports = [
         "id": "cordova-plugin-camera.CameraProxy",
         "pluginId": "cordova-plugin-camera",
         "runs": true
+    },
+    {
+        "file": "plugins/com.keymob.plugin.cordova/www/KeymobPlugin.js",
+        "id": "com.keymob.plugin.cordova.KeymobPlugin",
+        "pluginId": "com.keymob.plugin.cordova",
+        "clobbers": [
+            "window.keymob"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -36,7 +44,8 @@ module.exports.metadata =
 {
     "cordova-plugin-whitelist": "1.3.2",
     "cordova-plugin-compat": "1.2.0",
-    "cordova-plugin-camera": "2.4.1"
+    "cordova-plugin-camera": "2.4.1",
+    "com.keymob.plugin.cordova": "1.0.2"
 }
 // BOTTOM OF METADATA
 });
