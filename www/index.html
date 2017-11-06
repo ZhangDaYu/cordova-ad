@@ -45,24 +45,32 @@ content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; st
             </div>
 			
 			<lu>
-			<li><a href="javascript:keymob.loadInterstitial();">load Interstitial</a></li>
 			<br/>
-			<li><a href="javascript:showInterstitial();">show Interstitial</a></li>
+			<li><a href="javascript:keymob.loadInterstitial();">加载全屏广告</a></li>
 			<br/>
-			<li><a href="javascript:keymob.showBannerRelation(keymob.AdSize.BANNER,keymob.AdPosition.BOTTOM_CENTER,0);">show
-				test banner</a></li>
+			<li><a href="javascript:showInterstitial();">展示全屏广告</a></li>
 			<br/>
-			<li><a href="javascript:keymob.showBannerAbsolute(keymob.AdSize.BANNER,0,70);">show banner absolute</a></li>
+			<li><a href="javascript:keymob.showBannerRelation(keymob.AdSize.BANNER,keymob.AdPosition.BOTTOM_CENTER,0);">在底部展示banner广告</a></li>
 			<br/>
-			<li><a href="javascript:keymob.removeBanner()">hide banner</a></li>
-			</lu>
+			<li><a href="javascript:keymob.showBannerAbsolute(keymob.AdSize.BANNER,0,70);">在固定位置展示banner</a></li>
+			<br/>
+			<li><a href="javascript:keymob.removeBanner()">隐藏banner广告</a></li>
+			<br/>
+			<li><a href="javascript:keymob.loadAppWall()">加载应用墙广告</a></li>
+			<!-- <br/>
+			<li><a href="javascript:showAppWall()">展示应用墙广告</a></li>
+			 -->
+			 </lu>
+			 <div id="alertdiv"/>
         </div>
 		
 		
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
 		<script type="text/javascript">
+			//展示全屏广告
 			function showInterstitial() {
+				//确保加载完成再展示
 				keymob.isInterstitialReady(function (isReady) {
 					if (isReady) {
 						keymob.showInterstitial();
@@ -76,18 +84,28 @@ content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; st
 				}  
 				alert(names);  
 			}
+			//展示应用墙广告
+			function showAppWall(){
+				//确保加载完成再展示
+				keymob.isVideoReady(function (isReady) {
+			        if (isReady) {
+			            keymob.showVideo();
+			        }
+		    	});
+			}
+			//广告加载成功的回调事件
 			function onAdReceive(message) {
 				if(message.adtype==keymob.AdTypes.INTERSTITIAL){
-					alert(message.adtype + message.adapter+" ,you can show it now");
+					alert(message.adtype + message.adapter+" ,you can show it now 全屏广告加载完成");
 				}
-				//keymob.showInterstitial();//show it when received
+				//keymob.showInterstitial();//show it when received 加载完成就马上展示
 			}
+			//广告加载失败的回调事件
 			function onReceiveFail(message) {
 				document.getElementById("alertdiv").innerHTML =document.getElementById("alertdiv").innerHTML+"<br/>"+ message.adtype+"load fail: " + message.data;
 			}
+
 			function onDeviceReady() {
-				var jsonString = "";
-				//keymob.initFromJSON(jsonString);
 				keymob.initFromKeymobService("11089", true);
 				document.addEventListener(keymob.AdEvent.ON_LOADED_SUCCESS, onAdReceive, false);
 				document.addEventListener(keymob.AdEvent.ON_LOADED_FAIL, onReceiveFail, false);
