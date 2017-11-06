@@ -28,7 +28,8 @@
             * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
                 * Enable inline JS: add 'unsafe-inline' to default-src
         -->
-        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">
+        <meta http-equiv="Content-Security-Policy" 
+content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:; script-src * 'unsafe-inline'">
         <meta name="format-detection" content="telephone=no">
         <meta name="msapplication-tap-highlight" content="no">
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
@@ -42,8 +43,59 @@
                 <p class="event listening">Connecting to Device</p>
                 <p class="event received">Device is Ready</p>
             </div>
+			
+			<lu>
+			<li><a href="javascript:keymob.loadInterstitial();">load Interstitial</a></li>
+			<br/>
+			<li><a href="javascript:showInterstitial();">show Interstitial</a></li>
+			<br/>
+			<li><a href="javascript:keymob.showBannerRelation(keymob.AdSize.BANNER,keymob.AdPosition.BOTTOM_CENTER,0);">show
+				test banner</a></li>
+			<br/>
+			<li><a href="javascript:keymob.showBannerAbsolute(keymob.AdSize.BANNER,0,70);">show banner absolute</a></li>
+			<br/>
+			<li><a href="javascript:keymob.removeBanner()">hide banner</a></li>
+			</lu>
         </div>
+		
+		
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
+		<script type="text/javascript">
+			function showInterstitial() {
+				keymob.isInterstitialReady(function (isReady) {
+					if (isReady) {
+						keymob.showInterstitial();
+					}
+				});
+			}
+			function displayProp(obj){    
+				var names="";       
+				for(var name in obj){       
+				   names+=name+": "+obj[name]+", ";  
+				}  
+				alert(names);  
+			}
+			function onAdReceive(message) {
+				if(message.adtype==keymob.AdTypes.INTERSTITIAL){
+					alert(message.adtype + message.adapter+" ,you can show it now");
+				}
+				//keymob.showInterstitial();//show it when received
+			}
+			function onReceiveFail(message) {
+				document.getElementById("alertdiv").innerHTML =document.getElementById("alertdiv").innerHTML+"<br/>"+ message.adtype+"load fail: " + message.data;
+			}
+			function onDeviceReady() {
+				var jsonString = "";
+				//keymob.initFromJSON(jsonString);
+				keymob.initFromKeymobService("11089", true);
+				document.addEventListener(keymob.AdEvent.ON_LOADED_SUCCESS, onAdReceive, false);
+				document.addEventListener(keymob.AdEvent.ON_LOADED_FAIL, onReceiveFail, false);
+			}
+
+			document.addEventListener('deviceready', onDeviceReady, false);
+		</script>
+		
+		
     </body>
 </html>
